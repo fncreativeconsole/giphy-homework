@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Giphy Homework</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+<div class="jumbotron">
+<!--form goes here-->
+</div>
+
+<div class="panel panel-default">
+
+<div class="panel-heading">
+<h3 class="panel-title">Click Here!</h3>
+</div>
+
+<div class="panel-body buttons-go-here">
+
+
+<!--buttons go here-->
+
+</div>
+
+</div>
+
+<div class="panel panel-default">
+
+<div class="panel-heading">
+<h3 class="panel-title">Click the Giphy to Play it!</h3>
+</div>
+
+<div class="panel-body giphys-go-here">
+
+
+<!--giphys go here-->
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+  var topics = ["cat", "dog", "pig", "horse", "bird"]; 
+  var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+        topics[i] + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+
+        //assign each "topics" with its propio query URL by using ajax
+	for (var i = 0; i < topics.length; i++) {
+		
+      	$.ajax({
+        	url: queryURL,
+        	method: "GET"
+        })
+        .done(function(response) {
+        	console.log(response);
+        	var buttons = $("<button class=btn>" + topics[i] + "</button>");
+        	$(".buttons-go-here").append(buttons);
+        		
+        	
+
+        	//now that each of the buttons=the queryURL and keeps the label of topics, we create the action that happens when the button is clicked on
+
+        	$(".btn").on("click", function(){
+        		for (var j = 0; j < response.length; j++) {
+        		var gifs = $("<div>");
+        		var gifsImage = $("<img>");
+        		var rating = $("<p>").text("Rating: " + response[j].rating);
+        		gifs.append(rating);
+        		gifs.append(gifsImage);
+        		$(".giphys-go-here").append(gifs);
+
+
+        		}
+
+        		});
+
+
+
+
+        });
+    }
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
